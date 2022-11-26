@@ -1,0 +1,28 @@
+#!/usr/bin/env php
+<?php
+
+if (!isset($argv)) {
+    echo 'Please enable register_argc_argv in your PHP configuration', PHP_EOL;
+    exit(1);
+}
+
+set_include_path(implode(PATH_SEPARATOR, array(
+    get_include_path(),
+    __DIR__ . '/../vendor', // for bin/ when invoked from git repo clone
+    __DIR__ . '/../../..',  // for vendor/bin when installed via Composer
+)));
+require 'autoload.php';
+
+if ($argc !== 4) {
+    echo 'Usage: ' . basename(__FILE__) . ' [vault-path] [attachments-patch] [build-path]', PHP_EOL;
+    echo '[vault-path]: path to the root directory of the Obsidian vault to convert to HTML', PHP_EOL;
+    echo '[attachments-path]: path to the subdirectory of the Obsidian vault that contains attachments', PHP_EOL;
+    echo '[build-path]: path to the directory to receive the converted HTML', PHP_EOL;
+}
+
+$converter = new Elazar\LeagueCommonMarkObsidian\Converter;
+$converter->convert(
+    $argv[1],
+    $argv[2],
+    $argv[3],
+);

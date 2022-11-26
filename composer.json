@@ -1,0 +1,35 @@
+{
+    "name": "elazar/league-commonmark-obsidian",
+    "description": "Parser for use with league/commonmark to parse Obsidian Markdown",
+    "type": "library",
+    "require": {
+        "league/commonmark": "^2.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Elazar\\LeagueCommonMarkObsidian\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matthew Turland",
+            "email": "me@matthewturland.com"
+        }
+    ],
+    "require-dev": {
+        "pestphp/pest": "^1.22"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        },
+        "sort-packages": true
+    },
+    "scripts": {
+        "test": "pest"
+    },
+    "bin": [
+        "bin/obsidian-to-html"
+    ]
+}
