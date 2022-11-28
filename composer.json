@@ -1,7 +1,7 @@
 {
     "name": "elazar/league-commonmark-obsidian",
     "description": "Parser for use with league/commonmark to parse Obsidian Markdown",
-    "type": "library",
+    "type": "commonmark-extension",
     "require": {
         "league/commonmark": "^2.3"
     },
