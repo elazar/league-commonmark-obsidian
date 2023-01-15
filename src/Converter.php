@@ -26,8 +26,7 @@ class Converter
         $environment ??= $this->getDefaultEnvironment();
         $formatter ??= $this->getDefaultFormatter();
         $buildAttachmentsPath = $this->getBuildAttachmentsPath($buildPath, $attachmentsPath);
-        $extension = $this->getExtension($vaultPath, $attachmentsPath);
-        $this->configureEnvironment($environment, $extension);
+        $extension = $this->getExtension($vaultPath, $attachmentsPath, $environment);
 
         $this->createDirectory($buildPath);
         $this->createDirectory($buildAttachmentsPath);
@@ -50,18 +49,21 @@ class Converter
     protected function getExtension(
         string $vaultPath,
         string $attachmentsPath,
+        Environment $environment,
     ): LeagueCommonMarkObsidianExtension {
-        return new LeagueCommonMarkObsidianExtension(
+        $extensions = iterator_to_array($environment->getExtensions());
+        foreach ($extensions as $extension) {
+            if ($extension instanceof LeagueCommonMarkObsidianExtension) {
+                return $extension;
+            }
+        }
+
+        $extension = new LeagueCommonMarkObsidianExtension(
             $vaultPath,
             $attachmentsPath,
         );
-    }
-
-    protected function configureEnvironment(
-        Environment $environment,
-        LeagueCommonMarkObsidianExtension $extension,
-    ): void {
         $environment->addExtension($extension);
+        return $extension;
     }
 
     protected function getBuildAttachmentsPath(
