@@ -63,6 +63,16 @@ test('parses internal link', function (string $markdown, string $linkUrl, string
         'path/to/LinkName.html#LinkAnchor',
         'LinkText',
     ],
+    'without link and with anchor and without text' => [
+        '[[#LinkAnchor]]',
+        '#LinkAnchor',
+        'LinkAnchor'
+    ],
+    'without link and with anchor and with text' => [
+        '[[#LinkAnchor|LinkText]]',
+        '#LinkAnchor',
+        'LinkText'
+    ]
 ]);
 
 test('does not parse embeds', function () {
