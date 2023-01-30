@@ -14,7 +14,9 @@ test('resolves if attachment exists', function () {
     $linkName = 'LinkName';
     $fileName = $linkName . '.md';
     $filePath = $vaultPath . DIRECTORY_SEPARATOR . $fileName;
-    touch($filePath);
+    if (!touch($filePath)) {
+        return $this->markTestSkipped('Unable to write to ' . $filePath);
+    }
     $resolver = new InternalLinkResolver($vaultPath);
     $resolvedFileName = $linkName . '.html';
     $this->assertSame($resolvedFileName, $resolver->resolve($linkName, $filePath));

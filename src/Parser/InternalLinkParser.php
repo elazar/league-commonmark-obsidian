@@ -25,7 +25,7 @@ class InternalLinkParser implements InlineParserInterface
 
     public function getMatchDefinition(): InlineParserMatch
     {
-        return InlineParserMatch::regex('(?<!!)\\[\\[([^\\]\\|#]+)(?:#([^\\|]+))?(?:\\|([^\\]]+))?\\]\\]');
+        return InlineParserMatch::regex('(?<!!)\\[\\[([^\\]\\|#]+)?(?:#([^\\|]+))?(?:\\|([^\\]]+))?\\]\\]');
     }
 
     public function parse(InlineParserContext $inlineContext): bool
@@ -34,8 +34,8 @@ class InternalLinkParser implements InlineParserInterface
         $subMatches = $inlineContext->getSubMatches();
         $linkName = $subMatches[0];
         $linkAnchor = $subMatches[1] ?? null;
-        $linkText = $subMatches[2] ?? $linkName;
-        $linkUrl = $this->internalLinkResolver->resolve($linkName, $this->fromPath);
+        $linkText = $subMatches[2] ?? $linkName ?: $linkAnchor;
+        $linkUrl = $linkName ? $this->internalLinkResolver->resolve($linkName, $this->fromPath) : '';
         if ($linkAnchor) {
             $linkUrl .= '#' . $linkAnchor;
         }
