@@ -86,3 +86,25 @@ test('does not parse embeds', function () {
     $this->assertInstanceOf(Text::class, $child);
     $this->assertSame('![[LinkName]]', $child->getLiteral());
 });
+
+test('parses surrounding text correctly', function () {
+    $engine = getParseEngine(new FakeLinkResolver);
+
+    $block = new Paragraph;
+    $engine->parse('you roll a [[#d12]] and add a bonus', $block);
+
+    /** @var Text $text */
+    $text = $block->firstChild();
+    $this->assertInstanceOf(Text::class, $text);
+    $this->assertSame('you roll a ', $text->getLiteral());
+
+    /** @var Link $link */
+    $link = $text->next();
+    $this->assertInstanceOf(Link::class, $link);
+    $this->assertSame('#d12', $link->getUrl());
+
+    /** @var Text $text */
+    $text = $link->next();
+    $this->assertInstanceOf(Text::class, $text);
+    $this->assertSame(' and add a bonus', $text->getLiteral());
+});

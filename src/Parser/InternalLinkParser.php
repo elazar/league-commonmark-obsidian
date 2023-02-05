@@ -25,7 +25,7 @@ class InternalLinkParser implements InlineParserInterface
 
     public function getMatchDefinition(): InlineParserMatch
     {
-        return InlineParserMatch::regex('(?<!!)\\[\\[([^\\]\\|#]+)?(?:#([^\\|]+))?(?:\\|([^\\]]+))?\\]\\]');
+        return InlineParserMatch::regex('(?<!!)\\[\\[([^\\]\\|#]+)?(?:#([^\\|\\]]+))?(?:\\|([^\\]]+))?\\]\\]');
     }
 
     public function parse(InlineParserContext $inlineContext): bool
