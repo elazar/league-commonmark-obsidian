@@ -1,3 +1,7 @@
+# 2.1.0 - 2023-03-06
+
+- Fixed a bug where internal links to anchors on the same page were not parsed correctly ([#3](https://github.com/elazar/league-commonmark-obsidian/pull/3))
+
 # 2.0.0 - 2023-01-15
 
 This release fixes a bug where passing a custom value for the `$environment`
