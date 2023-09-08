@@ -1,7 +1,7 @@
 # League Commonmark Obsidian Extension
 
 [![PHP Version Support](https://img.shields.io/static/v1?label=php&message=%3E=%208.0.2&color=blueviolet)](https://packagist.org/packages/elazar/flystream)
-[![Packagist Version](https://img.shields.io/static/v1?label=packagist&message=1.0.0&color=blueviolet)](https://packagist.org/packages/elazar/flystream)
+[![Packagist Version](https://img.shields.io/static/v1?label=packagist&message=2.1.0&color=blueviolet)](https://packagist.org/packages/elazar/flystream)
 [![Software License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 [![Buy Me a Cofee](https://img.shields.io/badge/buy%20me%20a%20coffee-donate-brightgreen.svg)](https://ko-fi.com/elazar)
 
